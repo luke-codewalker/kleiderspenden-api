@@ -7,7 +7,8 @@ import re
 
 # setup
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={
+     r"/api/*": {"origins": "https://luke-codewalker.github.io/kleiderspenden/"}})
 
 # connect to MLab database
 client = MongoClient(
@@ -30,7 +31,7 @@ def strip_id(arg):
 
 # @route: api/sites
 # @method: GET
-# @desc: get all sites, or all matching a search for a place, or closest one to coordinates
+# @description: get all sites, or all matching a search for a place, or within radius around coordinates, returning only categories specified
 
 
 @app.route("/api/sites")
@@ -72,7 +73,9 @@ def find():
 
 # @route: api/sites/<id>
 # @method: GET
-# @desc: get sites by id
+# @description: get sites by id
+
+
 @app.route("/api/sites/<uid>")
 def find_by_id(uid):
     result = sites.find_one({"uid": uid})
