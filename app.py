@@ -8,7 +8,7 @@ import re
 # setup
 app = Flask(__name__)
 CORS(app, resources={
-     r"*": {"origins": r"https://luke-codewalker.github.io/kleiderspenden"}})
+     r"/api/*": {"origins": r"https://luke-codewalker.github.io/*"}})
 
 # connect to MLab database
 client = MongoClient(
