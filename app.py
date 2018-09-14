@@ -31,6 +31,8 @@ def strip_id(arg):
 # @route: api/sites
 # @method: GET
 # @desc: get all sites, or all matching a search for a place, or closest one to coordinates
+
+
 @app.route("/api/sites")
 def find():
     # check if params where specified
